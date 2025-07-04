@@ -12,10 +12,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('role');
+            $table->string('skill');
             $table->text('bio')->nullable();
             $table->text('experience')->nullable();
-            $table->json('contributions')->nullable();
-            $table->json('achievements')->nullable();
+            $table->text('contributions')->nullable();
+            $table->text('achievements')->nullable();
+            $table->text('social_media')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

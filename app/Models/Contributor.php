@@ -13,16 +13,16 @@ class Contributor extends Model
     protected $fillable = [
         'name',
         'role',
+        'skill',
         'bio',
         'experience',
         'contributions',
         'achievements',
+        'social_media',
         'is_active'
     ];
 
     protected $casts = [
-        'contributions' => 'array',
-        'achievements' => 'array',
         'is_active' => 'boolean',
     ];
 

@@ -24,10 +24,12 @@ class StoreContributorRequest extends FormRequest
         return [
             'name' => 'required|string',
             'role' => 'required|string',
+            'skill' => 'required|string',
             'bio' => 'required|string',
             'experience' => 'required|string',
             'contributions' => 'required|json',
             'achievements' => 'required|json',
+            'social_media' => 'required|json',
             'foto_profile' => 'required|image|mimes:png,jpg|max:2048',
         ];
     }

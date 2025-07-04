@@ -18,10 +18,12 @@ class ContributorResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'role' => $this->role,
+            'skill' => $this->skill,
             'bio' => $this->bio,
             'experience' => $this->experience,
-            'contributions' => $this->contributions,
-            'achievements' => $this->achievements,
+            'contributions' => json_decode($this->contributions),
+            'achievements' => json_decode($this->achievements),
+            'social_media' => json_decode($this->social_media),
             'file' => FileResource::collection($this->file),
         ];
     }
