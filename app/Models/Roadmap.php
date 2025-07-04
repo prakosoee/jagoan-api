@@ -13,7 +13,6 @@ class Roadmap extends Model
     protected $fillable = [
         'title',
         'description',
-        'thumbnail',
         'is_published',
         'created_by'
     ];
