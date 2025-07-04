@@ -22,6 +22,11 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'profile_picture',
+        'total_learning_time',
+        'is_active'
     ];
 
     /**
@@ -43,10 +48,50 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'password' => 'hashed',
+            'email_verified_at' => 'datetime',
+            'is_active' => 'boolean',
         ];
     }
 
-        /**
+    // Relationship untuk admin - roadmaps yang dibuat
+    public function roadmaps()
+    {
+        return $this->hasMany(Roadmap::class, 'created_by');
+    }
+
+    // Relationship untuk peserta - enrollments
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    // Relationship untuk peserta - course progresses
+    public function courseProgresses()
+    {
+        return $this->hasMany(CourseProgress::class);
+    }
+
+    // Relationship untuk peserta - quiz attempts
+    public function quizAttempts()
+    {
+        return $this->hasMany(QuizAttempt::class);
+    }
+
+    // Relationship untuk peserta - certificates
+    public function certificates()
+    {
+        return $this->hasMany(LevelCertificate::class);
+    }
+
+    // Relationship untuk peserta - enrolled roadmaps
+    public function enrolledRoadmaps()
+    {
+        return $this->belongsToMany(Roadmap::class, 'enrollments', 'user_id', 'roadmap_id')
+            ->withPivot('enrolled_at', 'started_at', 'status', 'current_level_id', 'current_course_id')
+            ->withTimestamps();
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

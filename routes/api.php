@@ -24,7 +24,7 @@ Route::middleware(['jwtAuth', 'role:peserta'])->group(function () {
 });
 
 Route::middleware(['jwtAuth', 'role:admin'])->group(function () {
-    Route::get('/peserta', function () {
+    Route::get('/admin', function () {
         return response()->json([
             'message' => 'Welcome, Admin!',
             'data' => [],

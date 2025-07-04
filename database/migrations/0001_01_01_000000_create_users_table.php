@@ -16,10 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['admin', 'peserta'])->nullable()->default('peserta');
+            $table->string('phone')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->integer('total_learning_time')->default(0); // in minutes - only for peserta
+            $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
