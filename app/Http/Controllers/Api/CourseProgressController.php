@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Quiz;
-use App\Http\Requests\StoreQuizRequest;
-use App\Http\Requests\UpdateQuizRequest;
+use App\Models\CourseProgress;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourseProgressRequest;
+use App\Http\Requests\UpdateCourseProgressRequest;
 
-class QuizController extends Controller
+class CourseProgressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class QuizController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreQuizRequest $request)
+    public function store(StoreCourseProgressRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quiz $quiz)
+    public function show(CourseProgress $courseProgress)
     {
         //
     }
@@ -43,7 +44,7 @@ class QuizController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Quiz $quiz)
+    public function edit(CourseProgress $courseProgress)
     {
         //
     }
@@ -51,7 +52,7 @@ class QuizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateQuizRequest $request, Quiz $quiz)
+    public function update(UpdateCourseProgressRequest $request, CourseProgress $courseProgress)
     {
         //
     }
@@ -59,7 +60,7 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Quiz $quiz)
+    public function destroy(CourseProgress $courseProgress)
     {
         //
     }

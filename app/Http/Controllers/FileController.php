@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LevelCertificate;
-use App\Http\Requests\StoreLevelCertificateRequest;
-use App\Http\Requests\UpdateLevelCertificateRequest;
+use App\Models\File;
+use App\Http\Requests\StoreFileRequest;
+use App\Http\Requests\UpdateFileRequest;
 
-class LevelCertificateController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class LevelCertificateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLevelCertificateRequest $request)
+    public function store(StoreFileRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class LevelCertificateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LevelCertificate $levelCertificate)
+    public function show(File $file)
     {
         //
     }
@@ -43,7 +43,7 @@ class LevelCertificateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LevelCertificate $levelCertificate)
+    public function edit(File $file)
     {
         //
     }
@@ -51,7 +51,7 @@ class LevelCertificateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLevelCertificateRequest $request, LevelCertificate $levelCertificate)
+    public function update(UpdateFileRequest $request, File $file)
     {
         //
     }
@@ -59,7 +59,7 @@ class LevelCertificateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LevelCertificate $levelCertificate)
+    public function destroy(File $file)
     {
         //
     }

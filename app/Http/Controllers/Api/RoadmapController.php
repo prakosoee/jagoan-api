@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Contributor;
-use App\Http\Requests\StoreContributorRequest;
-use App\Http\Requests\UpdateContributorRequest;
+use App\Models\Roadmap;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoadmapRequest;
+use App\Http\Requests\UpdateRoadmapRequest;
 
-class ContributorController extends Controller
+class RoadmapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class ContributorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreContributorRequest $request)
+    public function store(StoreRoadmapRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class ContributorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contributor $contributor)
+    public function show(Roadmap $roadmap)
     {
         //
     }
@@ -43,7 +44,7 @@ class ContributorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Contributor $contributor)
+    public function edit(Roadmap $roadmap)
     {
         //
     }
@@ -51,7 +52,7 @@ class ContributorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateContributorRequest $request, Contributor $contributor)
+    public function update(UpdateRoadmapRequest $request, Roadmap $roadmap)
     {
         //
     }
@@ -59,7 +60,7 @@ class ContributorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contributor $contributor)
+    public function destroy(Roadmap $roadmap)
     {
         //
     }

@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Repositories\ContributorRepository;
+use App\Interfaces\Repositories\FileRepository;
 use App\Repositories\UserRepositoryImpl;
-use App\Services\AuthServiceImpl;
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\Services\AuthService;
 use App\Interfaces\Repositories\UserRepository;
+use App\Repositories\ContributorRepositoryImpl;
+use App\Repositories\FileRepositoryImpl;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(AuthService::class, AuthServiceImpl::class);
         $this->app->bind(UserRepository::class, UserRepositoryImpl::class);
+        $this->app->bind(ContributorRepository::class, ContributorRepositoryImpl::class);
+        $this->app->bind(FileRepository::class, FileRepositoryImpl::class);
     }
 }

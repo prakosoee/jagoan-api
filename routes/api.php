@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ContributorController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -24,6 +25,7 @@ Route::middleware(['jwtAuth', 'role:peserta'])->group(function () {
 });
 
 Route::middleware(['jwtAuth', 'role:admin'])->group(function () {
+    Route::apiResource('contributor', ContributorController::class);
     Route::get('/admin', function () {
         return response()->json([
             'message' => 'Welcome, Admin!',

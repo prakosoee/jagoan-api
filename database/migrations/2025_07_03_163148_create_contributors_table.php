@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('role');
             $table->text('bio')->nullable();
             $table->text('experience')->nullable();
-            $table->string('profile_picture')->nullable();
             $table->json('contributions')->nullable();
             $table->json('achievements')->nullable();
             $table->boolean('is_active')->default(true);

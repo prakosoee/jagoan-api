@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\CourseProgress;
-use App\Http\Requests\StoreCourseProgressRequest;
-use App\Http\Requests\UpdateCourseProgressRequest;
+use App\Models\Enrollment;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEnrollmentRequest;
+use App\Http\Requests\UpdateEnrollmentRequest;
 
-class CourseProgressController extends Controller
+class EnrollmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class CourseProgressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCourseProgressRequest $request)
+    public function store(StoreEnrollmentRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class CourseProgressController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CourseProgress $courseProgress)
+    public function show(Enrollment $enrollment)
     {
         //
     }
@@ -43,7 +44,7 @@ class CourseProgressController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CourseProgress $courseProgress)
+    public function edit(Enrollment $enrollment)
     {
         //
     }
@@ -51,7 +52,7 @@ class CourseProgressController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseProgressRequest $request, CourseProgress $courseProgress)
+    public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment)
     {
         //
     }
@@ -59,7 +60,7 @@ class CourseProgressController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CourseProgress $courseProgress)
+    public function destroy(Enrollment $enrollment)
     {
         //
     }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Roadmap;
-use App\Http\Requests\StoreRoadmapRequest;
-use App\Http\Requests\UpdateRoadmapRequest;
+use App\Models\Quiz;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQuizRequest;
+use App\Http\Requests\UpdateQuizRequest;
 
-class RoadmapController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class RoadmapController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoadmapRequest $request)
+    public function store(StoreQuizRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class RoadmapController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Roadmap $roadmap)
+    public function show(Quiz $quiz)
     {
         //
     }
@@ -43,7 +44,7 @@ class RoadmapController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Roadmap $roadmap)
+    public function edit(Quiz $quiz)
     {
         //
     }
@@ -51,7 +52,7 @@ class RoadmapController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoadmapRequest $request, Roadmap $roadmap)
+    public function update(UpdateQuizRequest $request, Quiz $quiz)
     {
         //
     }
@@ -59,7 +60,7 @@ class RoadmapController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Roadmap $roadmap)
+    public function destroy(Quiz $quiz)
     {
         //
     }

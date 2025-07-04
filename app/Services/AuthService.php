@@ -4,17 +4,12 @@ namespace App\Services;
 
 use App\Helper\ApiResponse;
 use App\Interfaces\Repositories\UserRepository;
-use App\Interfaces\Services\AuthService;
-use Error;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Throwable;
 
-class AuthServiceImpl implements AuthService
+class AuthService
 {
     public function __construct(
         private UserRepository $userRepository

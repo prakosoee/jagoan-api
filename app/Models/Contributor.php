@@ -15,7 +15,6 @@ class Contributor extends Model
         'role',
         'bio',
         'experience',
-        'profile_picture',
         'contributions',
         'achievements',
         'is_active'
@@ -26,4 +25,9 @@ class Contributor extends Model
         'achievements' => 'array',
         'is_active' => 'boolean',
     ];
+
+    public function file()
+    {
+        return $this->hasMany(File::class, 'id_referensi')->where('context', 'contributor');
+    }
 }

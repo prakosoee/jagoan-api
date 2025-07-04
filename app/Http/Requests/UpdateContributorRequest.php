@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContributorRequest extends FormRequest
+class UpdateContributorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,13 @@ class StoreContributorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'role' => 'required|string',
-            'bio' => 'required|string',
-            'experience' => 'required|string',
-            'contributions' => 'required|json',
-            'achievements' => 'required|json',
-            'foto_profile' => 'required|image|mimes:png,jpg|max:2048',
+            'name' => 'sometimes|string',
+            'role' => 'sometimes|string',
+            'bio' => 'sometimes|string',
+            'experience' => 'sometimes|string',
+            'contributions' => 'sometimes|json',
+            'achievements' => 'sometimes|json',
+            'foto_profile' => 'sometimes|image|mimes:png,jpg|max:2048',
         ];
     }
 }
