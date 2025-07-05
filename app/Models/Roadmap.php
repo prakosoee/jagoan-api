@@ -55,6 +55,6 @@ class Roadmap extends Model
 
     public function flows()
     {
-        return $this->hasMany(Flow::class);
+        return $this->hasMany(Flow::class, 'roadmap_id');
     }
 }

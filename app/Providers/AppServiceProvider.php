@@ -2,23 +2,25 @@
 
 namespace App\Providers;
 
-use App\Interfaces\Repositories\ContributorRepository;
-use App\Interfaces\Repositories\CourseRepository;
-use App\Interfaces\Repositories\FileRepository;
-use App\Interfaces\Repositories\LevelRepository;
-use App\Interfaces\Repositories\QuizQuestionRepository;
-use App\Interfaces\Repositories\QuizRepository;
-use App\Interfaces\Repositories\RoadmapRepository;
-use App\Repositories\UserRepositoryImpl;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\FileRepositoryImpl;
+use App\Repositories\FlowRepositoryImpl;
+use App\Repositories\QuizRepositoryImpl;
+use App\Repositories\UserRepositoryImpl;
+use App\Repositories\LevelRepositoryImpl;
+use App\Repositories\CourseRepositoryImpl;
+use App\Repositories\RoadmapRepositoryImpl;
+use App\Interfaces\Repositories\FileRepository;
+use App\Interfaces\Repositories\FlowRepository;
+use App\Interfaces\Repositories\QuizRepository;
 use App\Interfaces\Repositories\UserRepository;
 use App\Repositories\ContributorRepositoryImpl;
-use App\Repositories\CourseRepositoryImpl;
-use App\Repositories\FileRepositoryImpl;
-use App\Repositories\LevelRepositoryImpl;
+use App\Interfaces\Repositories\LevelRepository;
 use App\Repositories\QuizQuestionRepositoryImpl;
-use App\Repositories\QuizRepositoryImpl;
-use App\Repositories\RoadmapRepositoryImpl;
+use App\Interfaces\Repositories\CourseRepository;
+use App\Interfaces\Repositories\RoadmapRepository;
+use App\Interfaces\Repositories\ContributorRepository;
+use App\Interfaces\Repositories\QuizQuestionRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CourseRepository::class, CourseRepositoryImpl::class);
         $this->app->bind(QuizRepository::class, QuizRepositoryImpl::class);
         $this->app->bind(QuizQuestionRepository::class, QuizQuestionRepositoryImpl::class);
+        $this->app->bind(FlowRepository::class, FlowRepositoryImpl::class);
     }
 }

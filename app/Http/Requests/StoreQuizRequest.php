@@ -11,7 +11,7 @@ class StoreQuizRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreQuizRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'course_id' => 'required|integer|exists:courses,id',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'time_limit_minutes' => 'required|integer|min:1',
+            'max_attempts' => 'required|integer|min:1',
+            'passing_score' => 'required|integer|min:0|max:100',
         ];
     }
 }

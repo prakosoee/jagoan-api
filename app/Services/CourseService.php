@@ -7,7 +7,8 @@ use App\Interfaces\Repositories\CourseRepository;
 class CourseService
 {
     public function __construct(
-        private CourseRepository $courseRepository
+        private CourseRepository $courseRepository,
+        private FileService $fileService
     ) {}
 
     public function getAllCourse()
@@ -17,15 +18,20 @@ class CourseService
     public function createCourse(array $courseRequest)
     {
         $course =  $this->courseRepository->create($courseRequest);
+
+        if (isset($courseRequest['content_course'])) {
+            $this->fileService->updateFile($courseRequest['content_course'], $course->id, 'content_course', 'contributor');
+        }
+        // $this->fileService->updateFile($courseRequest['course_content'], $course->id, 'course_content', 'course');
         return $course;
     }
     public function updateCourse(array $courseRequest, $id)
     {
         $course = $this->courseRepository->update($id, $courseRequest);
 
-        // if (isset($contributorRequest['foto_profile'])) {
-        //     $this->fileService->updateFile($contributorRequest['foto_profile'], $contributor->id, 'foto_profile', 'contributor');
-        // }
+        if (isset($courseRequest['content_course'])) {
+            $this->fileService->updateFile($courseRequest['content_course'], $course->id, 'content_course', 'contributor');
+        }
 
         return $course;
     }

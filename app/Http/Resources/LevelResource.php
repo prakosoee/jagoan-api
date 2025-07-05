@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoadmapResource extends JsonResource
+class LevelResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,10 @@ class RoadmapResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order' => $this->order,
             'title' => $this->title,
             'description' => $this->description,
-            'created_by' => $this->creator->name,
-            'file' => FileResource::collection($this->file),
-            'flow' => FlowResource::collection($this->flows)
+            'level_type' => $this->level_type,
         ];
     }
 }

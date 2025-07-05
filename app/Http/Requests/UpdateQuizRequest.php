@@ -11,7 +11,7 @@ class UpdateQuizRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateQuizRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'course_id' => 'sometimes|integer|exists:courses,id',
+            'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'time_limit_minutes' => 'sometimes|integer|min:1',
+            'max_attempts' => 'sometimes|integer|min:1',
+            'passing_score' => 'sometimes|integer|min:0|max:100'
         ];
     }
 }

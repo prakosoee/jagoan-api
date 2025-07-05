@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helper\ApiResponse;
 use App\Models\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Resources\CourseResource;
+use App\Services\CourseService;
 
 class CourseController extends Controller
 {
+    public function __construct(
+        private CourseService $courseService
+    ){}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $course = $this->courseService->getAllCourse();
+        return ApiResponse::responseWithData(CourseResource::collection($course), 'Course berhasil ditampilkan');
     }
 
     /**
@@ -30,7 +37,9 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        $courseRequest = $request->validated();
+        $course = $this->courseService->createCourse($courseRequest);
+        return ApiResponse::responseWithData(new CourseResource($course), 'Course berhasil dibuat', 201);
     }
 
     /**
@@ -52,16 +61,19 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(UpdateCourseRequest $request, $id)
     {
-        //
+        $courseRequest = $request->validated();
+        $course = $this->courseService->updateCourse($courseRequest, $id);
+        return ApiResponse::responseWithData(new CourseResource($course), 'Course berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        $this->courseService->deleteCourse($id);
+        return ApiResponse::response('Course berhasil dihapus');
     }
 }

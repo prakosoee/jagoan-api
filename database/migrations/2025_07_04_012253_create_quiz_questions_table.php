@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('option_c');
             $table->string('option_d');
             $table->enum('correct_answer', ['A', 'B', 'C', 'D']);
-            $table->text('explanation')->nullable();
             $table->integer('order')->default(0);
             $table->timestamps();
         });

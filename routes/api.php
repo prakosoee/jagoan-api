@@ -1,9 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FlowController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ContributorController;
+use App\Http\Controllers\Api\QuizController;
+use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\RoadmapController;
+use App\Http\Controllers\Api\ContributorController;
+use App\Http\Controllers\Api\QuizQuestionController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -28,25 +33,9 @@ Route::middleware(['jwtAuth', 'role:peserta'])->group(function () {
 Route::middleware(['jwtAuth', 'role:admin'])->group(function () {
     Route::apiResource('contributor', ContributorController::class);
     Route::apiResource('roadmap', RoadmapController::class);
-    Route::get('/admin', function () {
-        return response()->json([
-            'message' => 'Welcome, Admin!',
-            'data' => [],
-        ], 200);
-    });
+    Route::apiResource('flow', FlowController::class);
+    Route::apiResource('level', LevelController::class);
+    Route::apiResource('course', CourseController::class);
+    Route::apiResource('quiz', QuizController::class);
+    Route::apiResource('question', QuizQuestionController::class);
 });
-
-
-
-// Route::middleware('jwtAuth')->group(function () {
-//     Route::prefix('categories')->group(function () {
-//         Route::get('/', [CategoryController::class, 'index']);
-//         Route::post('/', [CategoryController::class, 'store']);
-//     });
-
-//     Route::get('products/search', [ProductController::class, 'search']);
-//     Route::post('products/update-stock', [ProductController::class, 'updateStock']);
-//     Route::apiResource('products', ProductController::class);
-
-//     Route::get('inventory/value', [ProductController::class, 'inventoryValue']);
-// });

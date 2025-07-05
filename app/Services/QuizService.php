@@ -22,11 +22,6 @@ class QuizService
     public function updateQuiz(array $quizRequest, $id)
     {
         $quiz = $this->quizRepository->update($id, $quizRequest);
-
-        // if (isset($contributorRequest['foto_profile'])) {
-        //     $this->fileService->updateFile($contributorRequest['foto_profile'], $contributor->id, 'foto_profile', 'contributor');
-        // }
-
         return $quiz;
     }
     public function deleteQuiz($id)

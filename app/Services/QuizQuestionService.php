@@ -23,10 +23,6 @@ class QuizQuestionService
     {
         $quizQuestion = $this->quizQuestionRepository->update($id, $quizQuestionRequest);
 
-        // if (isset($contributorRequest['foto_profile'])) {
-        //     $this->fileService->updateFile($contributorRequest['foto_profile'], $contributor->id, 'foto_profile', 'contributor');
-        // }
-
         return $quizQuestion;
     }
     public function deleteQuizQuestion($id)

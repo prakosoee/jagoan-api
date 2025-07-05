@@ -11,7 +11,7 @@ class UpdateLevelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateLevelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'roadmap_id' => 'sometimes|integer|exists:roadmaps,id',
+            'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'level_type' => 'sometimes|string|in:beginner,intermediate,advanced',
+            'order' => 'sometimes|integer',
         ];
     }
 }

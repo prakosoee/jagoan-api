@@ -11,7 +11,7 @@ class StoreLevelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreLevelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'roadmap_id' => 'required|integer|exists:roadmaps,id',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'level_type' => 'required|string|in:dasar,menengah,lanjutan',
+            'order' => 'required|integer',
         ];
     }
 }

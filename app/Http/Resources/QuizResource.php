@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoadmapResource extends JsonResource
+class QuizResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,12 @@ class RoadmapResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'course_id' => $this->course_id,
             'title' => $this->title,
             'description' => $this->description,
-            'created_by' => $this->creator->name,
-            'file' => FileResource::collection($this->file),
-            'flow' => FlowResource::collection($this->flows)
+            'time_limit_minutes' => $this->time_limit_minutes,
+            'max_attempts' => $this->max_attempts,
+            'passing_score' => $this->passing_score
         ];
     }
 }

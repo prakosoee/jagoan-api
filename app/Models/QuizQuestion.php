@@ -11,8 +11,14 @@ class QuizQuestion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'quiz_id', 'question', 'option_a', 'option_b', 'option_c', 'option_d',
-        'correct_answer', 'explanation', 'order'
+        'quiz_id',
+        'question',
+        'option_a',
+        'option_b',
+        'option_c',
+        'option_d',
+        'correct_answer',
+        'order'
     ];
 
     public function quiz()

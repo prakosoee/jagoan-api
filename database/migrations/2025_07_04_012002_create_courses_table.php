@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('content_type', ['video', 'audio', 'text', 'image']);
-            $table->string('content_url')->nullable();
             $table->text('content_text')->nullable();
             $table->integer('duration_minutes')->nullable();
             $table->integer('order')->default(0);

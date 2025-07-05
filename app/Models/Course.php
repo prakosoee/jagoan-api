@@ -15,7 +15,6 @@ class Course extends Model
         'title',
         'description',
         'content_type',
-        'content_url',
         'content_text',
         'duration_minutes',
         'order',
@@ -45,5 +44,10 @@ class Course extends Model
     public function currentEnrollments()
     {
         return $this->hasMany(Enrollment::class, 'current_course_id');
+    }
+
+    public function file()
+    {
+        return $this->hasMany(File::class, 'id_referensi')->where('context', 'course');
     }
 }

@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helper\ApiResponse;
 use App\Models\Level;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLevelRequest;
 use App\Http\Requests\UpdateLevelRequest;
+use App\Http\Resources\LevelResource;
+use App\Services\LevelService;
 
 class LevelController extends Controller
 {
+    public function __construct(
+        private LevelService $levelService
+    ){}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $level = $this->levelService->getAllLevel();
+        return ApiResponse::responseWithData(LevelResource::collection($level), 'Level Berhasil ditampilkan');
     }
 
     /**
@@ -30,7 +37,9 @@ class LevelController extends Controller
      */
     public function store(StoreLevelRequest $request)
     {
-        //
+        $levelRequest = $request->validated();
+        $level = $this->levelService->createLevel($levelRequest);
+        return ApiResponse::responseWithData(new LevelResource($level), 'Level Berhasil ditambahkan');
     }
 
     /**
@@ -52,16 +61,19 @@ class LevelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLevelRequest $request, Level $level)
+    public function update(UpdateLevelRequest $request, $id)
     {
-        //
+        $levelRequest = $request->validated();
+        $levelUpdated = $this->levelService->updateLevel($levelRequest, $id);
+        return ApiResponse::responseWithData(new LevelResource($levelUpdated), 'Level Berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Level $level)
+    public function destroy($id)
     {
-        //
+        $this->levelService->deleteLevel($id);
+        return ApiResponse::response('Level Berhasil dihapus');
     }
 }
