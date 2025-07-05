@@ -1,61 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Jagoan-API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Jagoan-API** adalah API backend untuk website **JagoCoding** yang dibangun menggunakan **Laravel**. API ini menyediakan berbagai endpoint untuk mendukung berbagai fitur di website **JagoCoding**. API ini menggunakan **JWT (JSON Web Token)** untuk autentikasi dan otorisasi pengguna.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Prasyarat](#prasyarat)
+- [Instalasi](#instalasi)
+  - [Clone Repository](#clone-repository)
+  - [Instalasi Dependensi](#instalasi-dependensi)
+  - [Konfigurasi Database dan `.env`](#konfigurasi-database-dan-env)
+  - [Migrasi dan Seeder](#migrasi-dan-seeder)
+  - [Menjalankan Aplikasi](#menjalankan-aplikasi)
+- [Konfigurasi JWT](#konfigurasi-jwt)
+- [Menambahkan Pengguna (Seeder)](#menambahkan-pengguna-seeder)
+- [Pengujian](#pengujian)
+- [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prasyarat
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sebelum memulai, pastikan Anda telah menginstal perangkat lunak berikut:
 
-## Learning Laravel
+- **PHP** >= 8.0
+- **Composer** - Untuk mengelola dependensi PHP
+- **MySQL** / **MariaDB** - Untuk database
+- **Node.js** - Untuk menjalankan frontend (jika diperlukan)
+- **Laravel** >= 8.x
+- **JWT (Laravel Passport atau JWT Auth)** - Untuk autentikasi token
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Clone Repository
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Clone repository **Jagoan-API** dari GitHub menggunakan perintah berikut:
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/username/jagoan-api.git
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Instalasi Dependensi
 
-### Premium Partners
+Setelah berhasil meng-clone repository, masuk ke direktori proyek dan instal semua dependensi menggunakan Composer:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+cd jagoan-api
+composer install
+```
 
-## Contributing
+Jika Anda juga menggunakan **npm** untuk frontend (misalnya untuk React atau Vue.js), instal dependensi npm dengan perintah berikut:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+npm install
+```
 
-## Code of Conduct
+### Konfigurasi Database dan `.env`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Salin file `.env.example` menjadi `.env`:**
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Konfigurasi database Anda di file `.env`. Pastikan Anda telah membuat database untuk aplikasi ini:**
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=jagoan_api    # Nama database yang Anda buat
+DB_USERNAME=root          # Username database Anda
+DB_PASSWORD=your_password # Password database Anda
+```
+
+3. **Konfigurasi JWT di file `.env`. Anda perlu mengatur `JWT_SECRET` setelah konfigurasi:**
+
+```env
+JWT_SECRET=    # Anda akan mendapatkan nilai ini setelah menjalankan php artisan jwt:secret
+```
+
+### Migrasi dan Seeder
+
+1. **Jalankan perintah migrasi untuk membuat tabel-tabel di database:**
+
+```bash
+php artisan migrate
+```
+
+2. **Untuk menambahkan data seeder (misalnya data pengguna awal), Anda dapat menjalankan perintah berikut untuk menjalankan seeder:**
+
+```bash
+php artisan db:seed
+```
+
+> **Catatan:** Seeder dapat ditambahkan di file `database/seeders/DatabaseSeeder.php`.
+
+### Menjalankan Aplikasi
+
+1. **Generate JWT Secret**: JWT memerlukan secret key untuk enkripsi token. Jalankan perintah berikut untuk mengenerate JWT Secret:
+
+```bash
+php artisan jwt:secret
+```
+
+Ini akan menambahkan key ke dalam file `.env` Anda.
+
+2. **Jalankan aplikasi menggunakan server built-in Laravel:**
+
+```bash
+php artisan serve
+```
+
+Aplikasi sekarang dapat diakses di `http://localhost:8000`.
+
+## Konfigurasi JWT
+
+Untuk menggunakan JWT dalam proyek ini, pastikan Anda telah menginstal dan mengkonfigurasi JWT sesuai dengan panduan di atas. JWT digunakan untuk autentikasi dan otorisasi pengguna di seluruh API.
+
+## Menambahkan Pengguna (Seeder)
+
+Untuk menambahkan pengguna default atau data awal lainnya, Anda dapat membuat seeder baru atau menggunakan seeder yang sudah ada. Jalankan perintah berikut untuk membuat seeder baru:
+
+```bash
+php artisan make:seeder UserSeeder
+```
+
+Kemudian edit file seeder yang dibuat dan jalankan:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
+## Pengujian
+
+### Testing dengan Postman
+
+Untuk menguji API endpoints, Anda dapat menggunakan collection Postman yang telah disediakan:
+
+**Postman Collection**: https://taamabwa.postman.co/workspace/King-Elang-~7e659b05-b28d-4729-8eeb-818d84df71c2/collection/43952736-8aa7fdd3-230a-4de9-b2ec-f31371162320?action=share&creator=43952736
+
+### Cara Menggunakan Postman Collection:
+
+1. **Import Collection**: Download dan import file collection Postman ke aplikasi Postman Anda
+2. **Setup Environment**: Buat environment baru di Postman dengan variabel berikut:
+   ```
+   base_url: http://localhost:8000/api
+   token: [akan diisi otomatis setelah login]
+   ```
+3. **Authentication**: Jalankan request **Login** terlebih dahulu untuk mendapatkan JWT token, username: admin@gmail.com & password: password
+4. **Testing Endpoints**: Setelah mendapatkan token, Anda dapat menguji semua endpoint yang tersedia
+
+### Unit Testing (Opsional)
+
+Untuk menjalankan pengujian unit dan feature tests, gunakan perintah berikut:
+
+```bash
+php artisan test
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+
+---
+
+**Jagoan-API** - Backend API untuk JagoCoding
