@@ -47,4 +47,14 @@ class Roadmap extends Model
     {
         return $this->hasMany(LevelCertificate::class);
     }
+
+    public function file()
+    {
+        return $this->hasMany(File::class, 'id_referensi')->where('context', 'roadmap');
+    }
+
+    public function flows()
+    {
+        return $this->hasMany(Flow::class);
+    }
 }

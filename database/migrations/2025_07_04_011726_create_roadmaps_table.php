@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('thumbnail')->nullable();
             $table->boolean('is_published')->default(false);
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();

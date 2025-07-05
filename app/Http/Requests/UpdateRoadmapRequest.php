@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Requests;
 
@@ -11,7 +11,7 @@ class UpdateRoadmapRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateRoadmapRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "title" => "sometimes|string",
+            "description" => "sometimes|string",
+            "created_by" => "sometimes|string",
+            "thumbnail" => "sometimes|file|mimes:jpg,jpeg,png,mp4,avi,mkv|max:10240", // Add file type and size constraints
         ];
     }
 }

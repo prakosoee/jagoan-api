@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helper\ApiResponse;
 use App\Models\Roadmap;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoadmapRequest;
 use App\Http\Requests\UpdateRoadmapRequest;
+use App\Http\Resources\RoadmapResource;
+use App\Services\RoadmapService;
+use Database\Seeders\RoadmapSeeder;
 
 class RoadmapController extends Controller
 {
+    public function __construct(
+        private RoadmapService $roadmapService
+    ){}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $roadmap = $this->roadmapService->getAllRoadmaps();
+        return ApiResponse::responseWithData(RoadmapResource::collection($roadmap), 'Data Roadmap Berhasil ditampilkan');
     }
 
     /**
@@ -30,13 +38,15 @@ class RoadmapController extends Controller
      */
     public function store(StoreRoadmapRequest $request)
     {
-        //
+        $roadmapRequest = $request->validated();
+        $roadmap = $this->roadmapService->createRoadmap($roadmapRequest);
+        return ApiResponse::responseWithData(new RoadmapResource($roadmap), 'Data Roadmap Berhasil ditambah', 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Roadmap $roadmap)
+    public function show($id)
     {
         //
     }
@@ -52,16 +62,19 @@ class RoadmapController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoadmapRequest $request, Roadmap $roadmap)
+    public function update(UpdateRoadmapRequest $request, $id)
     {
-        //
+        $roadmapRequest = $request->validated();
+        $roadmap = $this->roadmapService->updateRoadmap($roadmapRequest, $id);
+        return ApiResponse::responseWithData(new RoadmapResource($roadmap), 'Data Roadmap Berhasil di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Roadmap $roadmap)
+    public function destroy($id)
     {
-        //
+        $roadmap = $this->roadmapService->deleteRoadmap($id);
+        return ApiResponse::response('Roadmap berhasil dihapus');
     }
 }
