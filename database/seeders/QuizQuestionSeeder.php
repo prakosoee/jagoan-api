@@ -2,16 +2,19 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Quiz;
+use App\Models\QuizQuestion;
 use Illuminate\Database\Seeder;
 
 class QuizQuestionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        Quiz::all()->each(function ($quiz) {
+            QuizQuestion::factory()->count(3)->create([
+                'quiz_id' => $quiz->id,
+            ]);
+        });
     }
 }
+

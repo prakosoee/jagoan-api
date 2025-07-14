@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Roadmap;
 use Illuminate\Database\Seeder;
 
 class RoadmapSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Menjalankan seeder untuk tabel roadmaps.
+     *
+     * @return void
      */
     public function run(): void
     {
-        //
+        Roadmap::factory()->count(5)->create();
     }
 }

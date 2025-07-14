@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Contributor;
 use Illuminate\Database\Seeder;
 
 class ContributorSeeder extends Seeder
@@ -12,6 +12,6 @@ class ContributorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Contributor::factory()->withProfile()->count(10)->create();
     }
 }

@@ -14,13 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(ContributorSeeder::class);
+        $this->call(RoadmapSeeder::class);
+        $this->call(FlowSeeder::class);
+        $this->call(LevelSeeder::class);
+        $this->call(CourseSeeder::class);
+        $this->call(QuizSeeder::class);
+        $this->call(QuizQuestionSeeder::class);
+
 
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'admin',
-        ]);
+        ]);        
     }
 }

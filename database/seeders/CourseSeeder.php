@@ -2,16 +2,19 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Level;
+use App\Models\Course;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        Level::all()->each(function ($level) {
+            Course::factory()->count(10)->create([
+                'level_id' => $level->id,
+            ]);
+        });
     }
 }
+
