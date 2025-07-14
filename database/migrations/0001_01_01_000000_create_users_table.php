@@ -19,8 +19,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('role', ['admin', 'peserta'])->nullable()->default('peserta');
             $table->string('phone')->nullable();
-            $table->string('profile_picture')->nullable();
-            $table->integer('total_learning_time')->default(0); // in minutes - only for peserta
+            $table->string('full_name')->nullable();
+            $table->string('job')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('source_information')->nullable();
+            $table->integer('total_learning_time')->default(0); 
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();

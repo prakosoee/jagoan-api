@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helper\ApiResponse;
 use App\Models\Roadmap;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoadmapRequest;
-use App\Http\Requests\UpdateRoadmapRequest;
-use App\Http\Resources\RoadmapResource;
+use App\Helper\ApiResponse;
 use App\Services\RoadmapService;
 use Database\Seeders\RoadmapSeeder;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\RoadmapResource;
+use App\Http\Requests\StoreRoadmapRequest;
+use App\Http\Requests\UpdateRoadmapRequest;
+use App\Http\Resources\RoadmapByNameResource;
 
 class RoadmapController extends Controller
 {
@@ -76,5 +77,12 @@ class RoadmapController extends Controller
     {
         $roadmap = $this->roadmapService->deleteRoadmap($id);
         return ApiResponse::response('Roadmap berhasil dihapus');
+    }
+
+    public function getRoadmap($title)
+    {
+        $roadmap = $this->roadmapService->getRoadmapByName($title);
+        // dd($roadmap);
+        return ApiResponse::responseWithData(new RoadmapByNameResource($roadmap), "data Roadmap ".$roadmap->title." berhasil ditampilkan");
     }
 }

@@ -16,6 +16,7 @@ class QuizQuestionResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order' => $this->order,
             'quiz_id' => $this->quiz_id,
             'question' => $this->question,
             'option_a' => $this->option_a,
@@ -23,7 +24,6 @@ class QuizQuestionResource extends JsonResource
             'option_c' => $this->option_c,
             'option_d' => $this->option_d,
             'correct_answer' => $this->correct_answer,
-            'order' => $this->order,
         ];
     }
 }

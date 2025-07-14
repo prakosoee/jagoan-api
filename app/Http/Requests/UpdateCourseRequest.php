@@ -19,6 +19,7 @@ class UpdateCourseRequest extends FormRequest
             'description' => 'sometimes|string',
             'content_type' => 'sometimes|string|in:audio,video,image',
             'content_text' => 'sometimes_if:content_type,text|string',
+            'content_link' => 'sometimes|string|max:255',
             'duration_minutes' => 'sometimes_if:content_type,video|integer|min:1',
             'order' => 'sometimes|integer',
             'minimum_score' => 'sometimes|integer|min:0',

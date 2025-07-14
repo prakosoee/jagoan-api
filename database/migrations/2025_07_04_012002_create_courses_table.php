@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('content_type', ['video', 'audio', 'text', 'image']);
             $table->text('content_text')->nullable();
+            $table->string('content_link')->nullable();
             $table->integer('duration_minutes')->nullable();
             $table->integer('order')->default(0);
             $table->integer('minimum_score')->default(70);

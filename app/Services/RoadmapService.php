@@ -35,4 +35,9 @@ class RoadmapService
     {
         return $this->roadmapRepository->delete($id);
     }
+
+    public function getRoadmapByName($roadmap)
+    {
+        return $this->roadmapRepository->findByTitle($roadmap);
+    }
 }

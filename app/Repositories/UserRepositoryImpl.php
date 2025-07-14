@@ -15,6 +15,16 @@ class UserRepositoryImpl implements UserRepository
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'] ?? 'peserta',
+            'phone' => $data['phone'] ?? null,
+            'full_name' => $data['full_name'],
+            'job' => $data['job'] ?? null,
+            'organization' => $data['organization'] ?? null,
+            'source_information' => $data['source_information'] ?? null,
         ]);
+    }
+
+    public function getAllUser()
+    {
+        return User::where('role', 'peserta')->get();
     }
 }

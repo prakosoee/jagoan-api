@@ -54,7 +54,8 @@ class AuthService
     {
         return [
             'token' => $token,
-            'expires_in' => Auth::factory()->getTTL() * 60
+            'expires_in' => Auth::factory()->getTTL() * 60,
+            'role' => Auth::user()->role
         ];
     }
 }

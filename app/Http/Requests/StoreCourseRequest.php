@@ -19,10 +19,11 @@ class StoreCourseRequest extends FormRequest
             'description' => 'required|string',
             'content_type' => 'required|string|in:audio,video,image',
             'content_text' => 'required_if:content_type,text|string',
+            'content_link' => 'required|string|max:255',
             'duration_minutes' => 'required_if:content_type,video|integer|min:1',
             'order' => 'required|integer',
             'minimum_score' => 'required|integer|min:0',
-            'course_content' => 'required|file|mimes:' . $this->getMimesForContentType() . '|max:10240',
+            'course_content' => 'required|file|mimes:' . $this->getMimesForContentType(),
         ];
     }
 

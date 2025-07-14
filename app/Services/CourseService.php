@@ -17,10 +17,11 @@ class CourseService
     }
     public function createCourse(array $courseRequest)
     {
+        // dd($courseRequest);
         $course =  $this->courseRepository->create($courseRequest);
 
-        if (isset($courseRequest['content_course'])) {
-            $this->fileService->updateFile($courseRequest['content_course'], $course->id, 'content_course', 'contributor');
+        if (isset($courseRequest['course_content'])) {
+            $this->fileService->updateFile($courseRequest['course_content'], $course->id, 'course_content', 'course');
         }
         // $this->fileService->updateFile($courseRequest['course_content'], $course->id, 'course_content', 'course');
         return $course;
@@ -29,8 +30,8 @@ class CourseService
     {
         $course = $this->courseRepository->update($id, $courseRequest);
 
-        if (isset($courseRequest['content_course'])) {
-            $this->fileService->updateFile($courseRequest['content_course'], $course->id, 'content_course', 'contributor');
+        if (isset($courseRequest['course_content'])) {
+            $this->fileService->updateFile($courseRequest['course_content'], $course->id, 'course_content', 'course');
         }
 
         return $course;
@@ -38,5 +39,10 @@ class CourseService
     public function deleteCourse($id)
     {
         return $this->courseRepository->delete($id);
+    }
+
+    public function findCourse($id)
+    {
+        return $this->courseRepository->findById($id);
     }
 }

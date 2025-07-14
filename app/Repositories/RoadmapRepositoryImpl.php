@@ -23,9 +23,11 @@ class RoadmapRepositoryImpl implements RoadmapRepository
         return $roadmap;
     }
 
-    public function findById($id)
+    public function findByTitle($title)
     {
-        return Roadmap::findOrFail($id);
+        $roadmap = Roadmap::where('title', $title)->first();
+        // dd($roadmap);
+        return $roadmap;
     }
 
     public function delete($id)

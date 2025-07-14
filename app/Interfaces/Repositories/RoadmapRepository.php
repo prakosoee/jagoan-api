@@ -10,5 +10,5 @@ use App\Interfaces\Base\UpdateInterface;
 
 interface RoadmapRepository extends CreateInterface, GetAllInterface, UpdateInterface, DeleteInterface
 {
-    //
+    public function findByTitle($title);
 }

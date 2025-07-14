@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Resources\CourseDetailResource;
 use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
 
@@ -45,9 +46,10 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course = $this->courseService->findCourse($id);
+        return ApiResponse::responseWithData(new CourseDetailResource($course), "Course ".$course->name." Berhasil ditampilkan" );
     }
 
     /**

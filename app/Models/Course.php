@@ -16,6 +16,7 @@ class Course extends Model
         'description',
         'content_type',
         'content_text',
+        'content_link',
         'duration_minutes',
         'order',
         'minimum_score',
